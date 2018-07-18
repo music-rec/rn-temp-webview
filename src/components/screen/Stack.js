@@ -38,7 +38,7 @@ class Screen extends Component<Props, State> {
       'proj': 'https://s3.ap-northeast-2.amazonaws.com/projhub/4.todopage/index.html?uk=V43969U1O7w3O0e0g0M4R5P8',
       'sample': 'https://andreipfeiffer.github.io/react-native-webview-android-file-upload/index.html'
     };
-    if (OS === 'ios') {
+    if (OS === 'ios') { 
       return (<WebView
         source={{ uri: sampleurl.sample }}
         style={{
