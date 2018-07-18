@@ -40,7 +40,7 @@ class Screen extends Component<Props, State> {
     };
     if (OS === 'ios') {
       return (<WebView
-        source={{ uri: sampleurl.proj }}
+        source={{ uri: sampleurl.sample }}
         style={{
           flex: 1,
           width: width,
@@ -49,7 +49,7 @@ class Screen extends Component<Props, State> {
     } else {
       /* OS === Android */
       return (<CustomWebView
-        source={{ uri: sampleurl.proj }}
+        source={{ uri: sampleurl.sample }}
         startInLoadingState={true}
         style={{
           flex: 1,
