@@ -14,9 +14,11 @@ import {
   InteractionManager,
   WebView,
 } from 'react-native';
+/* mobx */
 import { observable } from 'mobx';
-import { observer } from 'mobx-react';
-import { inject } from 'mobx-react/native';
+// import { observer } from 'mobx-react';
+// import { inject } from 'mobx-react/native';
+import { inject, observer } from 'mobx-react/native';
 
 import { ratio, colors } from '../../utils/Styles';
 import { IC_MASK } from '../../utils/Icons';
@@ -76,6 +78,8 @@ const styles: any = StyleSheet.create({
 
 type Props = {
   store: User;
+  // store?: any;
+  // kek?: any;
 };
 type State = {
   isLoggingIn: boolean;
@@ -83,12 +87,19 @@ type State = {
 
 @inject('store') @observer
 class Page extends Component<Props, State> {
+  static navigationOptions = {
+    header: null,
+  };
+
   timer: any;
 
   state = {
     isLoggingIn: false,
   };
 
+  componentWillMount() {
+    console.log('[Intro]mobx store', this.props);
+  }
   componentWillUnmount() {
     if (this.timer) {
       clearTimeout(this.timer);
@@ -105,23 +116,33 @@ class Page extends Component<Props, State> {
           <Text style={styles.txtUser}>{this.props.store.user.job}</Text>
         </View>
         <View style={styles.btnBottomWrapper}>
-          {/* <Button
-            isLoading={this.state.isLoggingIn}
-            onPress={this.onLogin}
-            style={styles.btnLogin}
-            textStyle={styles.txtLogin}
-            imgLeftSrc={IC_MASK}
-            imgLeftStyle={styles.imgBtn}
-          >{getString('LOGIN')}</Button> */}
           <Button
-            onPress={() => NavigationService.navigate('Stack')}
+            onPress={() => NavigationService.navigate('Stack', {name: 'proj'})}
             style={[
               styles.btn,
               {
                 marginTop: 50,
               },
             ]}
-          >WebView Go</Button>
+          >Go to ProjectHUBCL</Button>
+          <Button
+            onPress={() => NavigationService.navigate('Stack', {name: 'sample'})}
+            style={[
+              styles.btn,
+              {
+                marginTop: 50,
+              },
+            ]}
+          >Go to react-native-webview-android-file-upload</Button>
+          <Button
+            onPress={() => NavigationService.navigate('WebViewNav', {name: 'post_sample'})}
+            style={[
+              styles.btn,
+              {
+                marginTop: 50,
+              },
+            ]}
+          >postMessage example</Button>
         </View>
       </View>
     );

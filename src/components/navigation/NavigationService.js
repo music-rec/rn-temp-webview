@@ -12,12 +12,11 @@ function setTopLevelNavigator(navigatorRef) {
 }
 
 function navigate(routeName: string, params?: any) {
-  _navigator.dispatch(
-    NavigationActions.navigate({
-      routeName,
-      params,
-    }),
-  );
+  const navigateAction = NavigationActions.navigate({
+    routeName,
+    params,
+  });
+  _navigator.dispatch(navigateAction);
 }
 
 function reset(routeName) {
